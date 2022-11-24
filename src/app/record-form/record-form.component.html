@@ -1,0 +1,39 @@
+<form [formGroup]="formGroup" (submit)="saveRecord(formGroup)">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <fieldset class="border p-2">
+                    <legend class="w-auto"> </legend>
+                    <div class="row">
+                        <div class="col-3"><input type="text" class="form-control" placeholder="日期" formControlName="recordTime" required [ngClass]="{'unvalid': isUnValid('recordTime')}"></div>
+                        <div class="col-3"><input type="text" class="form-control" placeholder="類別" formControlName="category" [ngClass]="{'unvalid': isUnValid('category')}" required></div>
+                        <div class="col-3"><input type="text" class="form-control" placeholder="項目" formControlName="item" [ngClass]="{'unvalid': isUnValid('item')}" required></div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-12">
+                <fieldset class="border p-2">
+                    <legend class="w-auto">價格 </legend>
+                    <div class="row">
+                        <div class="col-3"><input type="number" class="form-control" placeholder="單價" formControlName="price" [ngClass]="{'unvalid': isUnValid('price')}" required></div>
+                        <div class="col-3"><input type="number" class="form-control" placeholder="數量" formControlName="count" [ngClass]="{'unvalid': isUnValid('count')}" required></div>
+                        <div class="col-3"><input type="text" class="form-control" placeholder="單位" formControlName="unit"></div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="col-12">
+                <fieldset class="border p-2">
+                    <legend class="w-auto">備註 </legend>
+                    <textarea class="form-control" rows="5" formControlName="ps"></textarea>
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-warning" *ngIf="(!this.record.id || this.record.id == -1) && this.formGroup.valid">新增</button>
+                <button type="submit" class="btn btn-warning" *ngIf="(this.record.id && this.record.id!=-1) && this.formGroup.valid">儲存修改</button>
+                <button type="button" id="reqMsg" class="btn btn-light" *ngIf="!this.formGroup.valid" disabled>尚有必要欄位需填入</button>
+            </div>
+        </div>
+    </div>
+</form>

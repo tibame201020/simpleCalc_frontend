@@ -2,3 +2,9 @@
 @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap");
+
+body{
+    font-family: 'Noto Sans TC', sans-serif !important;
+    font-size:x-large;
+}
