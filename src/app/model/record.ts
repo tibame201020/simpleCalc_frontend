@@ -15,8 +15,4 @@ export interface RecordForm {
   startTime: number;
   endTime: number;
   item: string;
-  price: number;
-  unit: string;
-  count: number;
-  ps: string;
 }

@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <div class="row stickyhere">
+        <div class="col-1">
+            <button type="button" class="btn btn-info" (click)="openRecordForm();">
+                <span>新增紀錄</span>
+            </button>
+        </div>
+        <div class="col-10">
+            <form [formGroup]="formGroup">
+                <input type="text" class="form-control form-input" formControlName="filterKey">
+            </form>
+        </div>
+        <div class="col-12">
+            總計：{{this.total | number}}
+        </div>
+    </div>
+    <div class="row right-nav">
+        <form [formGroup]="formGroup">
+            <div class="col-12 clicker" (click)="changeShowMenu()">
+            <i class="material-icons">menu</i>
+            </div>
+            <div class="row menudiv" [ngClass]="{'hiddendiv': this.hideMenu}" style="transition: visibility 0s linear 0.33s, opacity 0.33s linear;">
+                <div class="col-12">
+                    <select class="custom-select" formControlName="category">
+                        <option value="all">全部類別</option>
+                        <option *ngFor="let item of categoryArray" value="{{item}}">{{item}}</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-12" *ngIf="this.records.length">
+          <mat-tab-group>
+            <mat-tab label="表格">
+              <table class="table table-hover table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col-1" style="width: 0.5%;">#</th>
+                        <th scope="col-1" style="width: 1%;">日期</th>
+                        <th scope="col-1" style="width: 2%;">類別</th>
+                        <th scope="col-1" style="width: 4%;">項目</th>
+                        <th scope="col-1" style="width: 2%;">小計</th>
+                        <th scope="col-1" style="width: 2%;">單價</th>
+                        <th scope="col-1" style="width: 1%;">數量</th>
+                        <th scope="col-1" style="width: 1%;">單位</th>
+                        <th scope="col-1" style="width: 5%;">備註</th>
+                        <th scope="col-2" style="width: 6%;"> </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let record of this.records;let idx=index;">
+                        <th scope="row">{{idx + 1}}</th>
+                        <td>{{wrapperDate(record.recordTime)}}</td>
+                        <td>{{record.category}}</td>
+                        <td>{{record.item}}</td>
+                        <td>{{(record.price * record.count) | number}}</td>
+                        <td>{{record.price | number}}</td>
+                        <td>{{record.count | number}}</td>
+                        <td>{{record.unit}}</td>
+                        <td>{{record.ps}}</td>
+                        <td>
+                            <button type="button" class="btn btn-success" (click)="copyRecord(record);">複製</button> |
+                            <button type="button" class="btn btn-info" (click)="editRecord(record);">編輯</button> |
+                            <button type="button" class="btn btn-danger" (click)="deleteRecord(record.id);">刪除</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </mat-tab>
+            <mat-tab label="圓餅">
+                <div echarts [options]="this.options" class="demo-chart"></div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+    </div>
+</div>

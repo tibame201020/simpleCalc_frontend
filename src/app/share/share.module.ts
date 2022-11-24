@@ -6,7 +6,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
-import { NgxEchartsModule } from 'ngx-echarts';
 import { AngularMaterialModule } from './angular-material.module';
 
 @NgModule({
@@ -16,9 +15,6 @@ import { AngularMaterialModule } from './angular-material.module';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxEchartsModule.forRoot({
-      echarts: () => import('echarts'),
-    }),
   ],
   declarations: [
   ],
