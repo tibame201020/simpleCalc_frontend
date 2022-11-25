@@ -134,7 +134,6 @@ export class FrontIndexComponent implements OnInit {
   findRecords() {
     this.recordService.findRecords(this.formGroup.value).subscribe((res) => {
       if (res && res.length) {
-        console.log(res)
         this.records = res;
         this.calcReords(res);
         this.setOption();
@@ -219,13 +218,24 @@ export class FrontIndexComponent implements OnInit {
   }
 
   setOption() {
-    const data: { value: number; name: string; }[] = [];
+    let data: { value: number; name: string; }[] = [];
     this.groupByKey(this.splitItmGroupByKey(this.records, 'category')).forEach((record) => {
       data.push({
         value: record.total,
         name: record.category
       });
     });
+
+    if (data.length == 1) {
+      data = [];
+      this.groupByKey(this.splitItmGroupByKey(this.records, 'item')).forEach((record) => {
+        data.push({
+          value: record.total,
+          name: record.category
+        });
+      })
+    }
+
     this.options = {
       legend: {
         x: 'left',
