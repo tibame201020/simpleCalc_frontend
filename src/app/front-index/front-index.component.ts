@@ -219,9 +219,6 @@ export class FrontIndexComponent implements OnInit {
   }
 
   setOption() {
-
-    console.log(this.groupByKey(this.splitItmGroupByKey(this.records, 'category')))
-
     const data: { value: number; name: string; }[] = [];
     this.groupByKey(this.splitItmGroupByKey(this.records, 'category')).forEach((record) => {
       data.push({
